@@ -73,7 +73,7 @@ namespace XMLSerializationLibrary
             }
         }
 
-        private string GetContent(string XML, out string remains)
+        public string GetContent(string XML, out string remains)
         {
             string result = "";
             if(XML[0] == '<')
@@ -104,7 +104,7 @@ namespace XMLSerializationLibrary
 
                 if (XML[i + 1] == '/')
                 {
-                    i++;
+                    i+=2;
                     do
                     {
                         closingName += XML[i];
@@ -130,7 +130,7 @@ namespace XMLSerializationLibrary
             }
         }
 
-        private bool isClosingTagNext(string openningTag, string XML)
+        public bool isClosingTagNext(string openningTag, string XML)
         {
             if (XML[0] == '<' && XML[1] == '/')
             {
