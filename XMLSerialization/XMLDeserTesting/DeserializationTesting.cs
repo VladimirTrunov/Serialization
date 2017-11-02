@@ -105,5 +105,16 @@ namespace XMLDeserTesting
             fact = deserialization.isClosingTagNext("b", deserialization.XML_String);
             Assert.AreEqual(expected, fact, "Attempt 2");
         }
+
+        [TestMethod]
+        public void TestGettingClosingTag()
+        {
+            string xml = "</b>";
+            string expected = "b";
+            _XMLDeserialization deserialization = new _XMLDeserialization(xml);
+            string fact = deserialization.GetCloseTag("b", deserialization.XML_String);
+
+            Assert.AreEqual(expected, fact);
+        }
     }
 }

@@ -149,7 +149,7 @@ namespace XMLSerializationLibrary
             else
                 return false;
         }
-        private string getCloseTag(string openningTag, string XML)
+        public string GetCloseTag(string openningTag, string XML)
         {
             string closingTag = "";
             if (XML[0] == '<' && XML[1] == '/')
@@ -167,9 +167,8 @@ namespace XMLSerializationLibrary
                     throw new Exception("Closing tag is not equal to openning one (" + openningTag + "!=" + closingTag + ")");
             }
             else
-                throw new Exception("Couldn't find openning tag");
+                throw new Exception("Couldn't find closing tag");
         }
-
         private void FillXmlTree(_XMLTree tree, string XML, int startChar, ref int lastChar)
         {
             tree.tagOpen = GetMainTag(XML);
