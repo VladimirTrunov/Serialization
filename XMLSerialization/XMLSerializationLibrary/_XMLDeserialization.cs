@@ -169,29 +169,28 @@ namespace XMLSerializationLibrary
             else
                 throw new Exception("Couldn't find closing tag");
         }
-        private void FillXmlTree(_XMLTree tree, string XML, int startChar, ref int lastChar)
+        public void FillXmlTree(_XMLTree tree, string XML, out string remains)
         {
+            remains = null;
             tree.tagOpen = GetMainTag(XML);
             TagContent content = DefineTagContent(XML);
-            string remains;
             if (content == TagContent.Content)
             {
-                tree.tagContent = GetContent(XML, out remains);
+                string rem1;
+                tree.tagContent = GetContent(XML, out rem1);
+                remains = rem1;
             }
             else if (content == TagContent.Tree)
             {
-                int idx = startChar;
-
                 string NewXml = XML.Remove(0, tree.tagOpen.Length + 2);
-                idx += tree.tagOpen.Length + 2;
                 do
                 {
-                    int lastIdx = 0;
                     tree.subTrees.Add(new _XMLTree());
-                    FillXmlTree(tree.subTrees[tree.subTrees.Count - 1], NewXml, idx, ref lastIdx);
-                    NewXml = NewXml.Remove(0, lastIdx - idx);
-                    idx += lastIdx;
+                    string remains1;
+                    FillXmlTree(tree.subTrees[tree.subTrees.Count - 1], NewXml, out remains1);
+                    NewXml = remains1;
                 } while (!isClosingTagNext(tree.tagOpen, NewXml));
+                remains = NewXml;
             }
         }
     }

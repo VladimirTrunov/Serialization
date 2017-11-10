@@ -47,7 +47,6 @@ namespace XMLDeserTesting
 
             Assert.AreEqual(content, factContent);
         }
-
         [TestMethod]
         public void TestGettingContent()
         {
@@ -62,7 +61,6 @@ namespace XMLDeserTesting
             Assert.AreEqual(expected, fact);
             Assert.AreEqual(expectedOutStr, outStr);
         }
-
         [TestMethod]
         public void TestGettingContent2()
         {
@@ -77,7 +75,6 @@ namespace XMLDeserTesting
             Assert.AreEqual(expected, fact);
             Assert.AreEqual(expectedOutStr, outStr);
         }
-
         [TestMethod]
         public void TestIsClosingTagNext()
         {
@@ -91,7 +88,6 @@ namespace XMLDeserTesting
             fact = deserialization.isClosingTagNext("b", deserialization.XML_String);
             Assert.AreNotEqual(expected, fact);
         }
-
         [TestMethod]
         public void TestIsClosingTagNext2()
         {
@@ -105,7 +101,6 @@ namespace XMLDeserTesting
             fact = deserialization.isClosingTagNext("b", deserialization.XML_String);
             Assert.AreEqual(expected, fact, "Attempt 2");
         }
-
         [TestMethod]
         public void TestGettingClosingTag()
         {
@@ -115,6 +110,20 @@ namespace XMLDeserTesting
             string fact = deserialization.GetCloseTag("b", deserialization.XML_String);
 
             Assert.AreEqual(expected, fact);
+        }
+
+        [TestMethod]
+        public void TestFillingXmlTree()
+        {
+            _XMLTree tree = new _XMLTree();
+            string xml = "<main><a type = \"open\">123</a><b>1</b></main>";
+            int startChar = 0;
+            int lastChar = 0;
+            _XMLDeserialization deser = new _XMLDeserialization(xml);
+
+
+            deser.FillXmlTree(tree, xml, startChar, ref lastChar);
+            
         }
     }
 }

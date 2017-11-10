@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XMLSerializationLibrary
 {
-    class _XMLTree
+    public class _XMLTree
     {
         public string tagOpen { get; set; }
         public string tagClose { get; set; }
