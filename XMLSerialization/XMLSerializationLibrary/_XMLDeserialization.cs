@@ -14,12 +14,15 @@ namespace XMLSerializationLibrary
     }
     public class _XMLDeserialization
     {
+        private _ItemTree itemTree;
         public _XMLTree mainTree;
         public string XML_String;
+
         public _XMLDeserialization()
         {
             mainTree = new _XMLTree();
         }
+
         public _XMLDeserialization(string XML)
         {
             XML_String = XML.Replace("\n", "");
@@ -32,6 +35,7 @@ namespace XMLSerializationLibrary
             } while (stringLength != XML_String.Length);
 
             mainTree = new _XMLTree();
+            itemTree = new _ItemTree();
             XML_String = XML_String.Trim();
         }
 
@@ -149,6 +153,7 @@ namespace XMLSerializationLibrary
             else
                 return false;
         }
+
         public string GetCloseTag(string openningTag, string XML)
         {
             string closingTag = "";
@@ -169,6 +174,7 @@ namespace XMLSerializationLibrary
             else
                 throw new Exception("Couldn't find closing tag");
         }
+
         public void FillXmlTree(_XMLTree tree, string XML, out string remains)
         {
             remains = null;
@@ -192,6 +198,11 @@ namespace XMLSerializationLibrary
                 } while (!isClosingTagNext(tree.tagOpen, NewXml));
                 remains = NewXml.Remove(0, tree.tagOpen.Length + 3);
             }
+        }
+
+        void IdentifySubject(_XMLTree mainTree)
+        {
+
         }
     }
 }
