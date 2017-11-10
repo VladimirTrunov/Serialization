@@ -12,8 +12,8 @@ namespace XMLSerializationLibrary
         _ItemTree Parent;
         List<string> SubtreeNames;
 
-        private string XMLHeader = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>\n";
-        private string mainLinks = " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n";
+        private string XMLHeader = "";//"<?xml version=\"1.0\" encoding=\"UTF - 8\"?>\n";
+        private string mainLinks = "";//" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n";
         private string Header;
 
         private string _startElement;
@@ -64,7 +64,7 @@ namespace XMLSerializationLibrary
             Parent = tree;
 
             FillSubtreeList();
-            Header = "<" + _startElement + mainLinks;
+            Header = "<" + _startElement + ">\n";
 
             AddHeader();
             ConvertTreeToXML(Parent, startElement, 0);

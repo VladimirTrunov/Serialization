@@ -14,7 +14,7 @@ namespace XMLSerializationLibrary
     }
     public class _XMLDeserialization
     {
-        private _XMLTree mainTree;
+        public _XMLTree mainTree;
         public string XML_String;
         public _XMLDeserialization()
         {
@@ -190,7 +190,7 @@ namespace XMLSerializationLibrary
                     FillXmlTree(tree.subTrees[tree.subTrees.Count - 1], NewXml, out remains1);
                     NewXml = remains1;
                 } while (!isClosingTagNext(tree.tagOpen, NewXml));
-                remains = NewXml;
+                remains = NewXml.Remove(0, tree.tagOpen.Length + 3);
             }
         }
     }

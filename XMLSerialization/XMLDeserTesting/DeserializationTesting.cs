@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XMLSerializationLibrary;
 
+
 namespace XMLDeserTesting
 {
     [TestClass]
@@ -111,19 +112,29 @@ namespace XMLDeserTesting
 
             Assert.AreEqual(expected, fact);
         }
-
         [TestMethod]
         public void TestFillingXmlTree()
         {
             _XMLTree tree = new _XMLTree();
             string xml = "<main><a type = \"open\">123</a><b>1</b></main>";
-            int startChar = 0;
-            int lastChar = 0;
+            string remains;
             _XMLDeserialization deser = new _XMLDeserialization(xml);
 
 
-            deser.FillXmlTree(tree, xml, startChar, ref lastChar);
+            deser.FillXmlTree(tree, xml, out remains);
             
+        }
+        [TestMethod]
+        public void SerializationDeserialization()
+        {
+            PC pc = new PC("Kevin", 25, 80, "GTA");
+            Serialization<PC> instance = new Serialization<PC>(pc);
+            string xml = instance.GetXMLFormat();
+            _XMLDeserialization des = new _XMLDeserialization(xml);
+            string remains;
+            des.FillXmlTree(des.mainTree, des.XML_String, out remains);
+
+            Assert.AreEqual("", remains);
         }
     }
 }
